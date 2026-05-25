@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-05-25T17:00:24.706Z",
+  "updatedAt": "2026-05-25T17:52:34.439Z",
   "tasks": [
     {
       "id": "task-001",
@@ -51,6 +51,16 @@
       "project": "nexus",
       "priority": "medium",
       "createdAt": "2026-05-25T00:00:00.000Z"
+    },
+    {
+      "id": "task-1779731484857",
+      "title": "Test task",
+      "description": "",
+      "status": "done",
+      "assignee": "ceo",
+      "project": null,
+      "priority": "medium",
+      "createdAt": "2026-05-25T17:51:24.857Z"
     }
   ]
 }

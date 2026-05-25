@@ -48,14 +48,26 @@ function TaskCard({ task, onUpdate }: { task: Task; onUpdate: () => void }) {
   const actionLabel = ACTION_LABEL[task.status]
   const nextStatus = NEXT_STATUS[task.status]
 
-  async function handleAction() {
+    async function handleAction() {
+    const isApproving = task.status === 'pending-approval'
+
     await fetch('/api/tasks', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: task.id, status: nextStatus }),
     })
-        onUpdate()
+
+    if (isApproving) {
+      await fetch('/api/tasks/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ taskTitle: task.title }),
+      })
+    }
+
+    onUpdate()
   }
+
   return (
     <div
       className="rounded-xl p-4 mb-3"
