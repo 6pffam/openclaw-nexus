@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
+import { useRealtimeUpdates } from '@/hooks/useRealtimeUpdates'
 import type { CrewMember } from '@/lib/types'
 
 function Desk({ member, active }: { member: CrewMember; active: boolean }) {
-  return (
+    return (
     <div className="flex flex-col items-center gap-1">
       <div
         className="w-8 h-8 flex items-center justify-center text-lg transition-all duration-500"
@@ -52,26 +53,23 @@ function Desk({ member, active }: { member: CrewMember; active: boolean }) {
 export default function OfficePage() {
   const [members, setMembers] = useState<CrewMember[]>([])
   const [lastUpdated, setLastUpdated] = useState<string>('')
-
-  async function fetchCrew() {
+  const fetchCrew = useCallback(async () => {
     try {
       const res = await fetch('/api/crew')
       const data = await res.json()
       setMembers(data.members ?? [])
       setLastUpdated(new Date().toLocaleTimeString())
     } catch {}
-  }
-
-  useEffect(() => {
-    fetchCrew()
-    const interval = setInterval(fetchCrew, 30000)
-    return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => { fetchCrew() }, [fetchCrew])
+  useRealtimeUpdates(fetchCrew)
 
   const ceo = members.find(m => m.id === 'ceo')
   const topRow = members.filter(m => ['chief-of-staff', 'coder', 'project-manager'].includes(m.id))
   const bottomRow = members.filter(m => ['qa', 'researcher', 'financial-advisor'].includes(m.id))
   const activeCount = members.filter(m => m.status === 'active').length
+
   return (
     <div className="max-w-4xl mx-auto pt-8">
       <div className="mb-8 flex items-end justify-between">

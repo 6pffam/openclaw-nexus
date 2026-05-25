@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-05-25T00:00:00.000Z",
+  "updatedAt": "2026-05-25T17:00:24.706Z",
   "tasks": [
     {
       "id": "task-001",
       "title": "Build Nexus dashboard",
       "description": "Next.js mission control — Team, Office, Projects, Tasks screens",
-      "status": "in-progress",
+      "status": "done",
       "assignee": "chief-of-staff",
       "project": "nexus",
       "priority": "high",
@@ -16,7 +16,7 @@
       "id": "task-002",
       "title": "Approve Nexus phase 1 design",
       "description": "Review Team and Projects screens. Approve to proceed to Office and Tasks.",
-      "status": "pending-approval",
+      "status": "done",
       "assignee": "ceo",
       "project": "nexus",
       "priority": "urgent",
