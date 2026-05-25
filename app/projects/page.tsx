@@ -1,4 +1,5 @@
 import { scanProjects } from '@/lib/projects'
+import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,6 +11,7 @@ const phaseColor: Record<string, { color: string; bg: string }> = {
 
 export default function ProjectsPage() {
   const projects = scanProjects()
+
   return (
     <div className="max-w-6xl mx-auto pt-8">
       <div className="mb-8">
@@ -23,51 +25,51 @@ export default function ProjectsPage() {
         {projects.map(project => {
           const pc = phaseColor[project.phase] ?? phaseColor['Exploring']
           const updated = new Date(project.lastModified).toLocaleDateString('en-GB', {
-            day: 'numeric', month: 'short', year: 'numeric'
+            day: 'numeric', month: 'short', year: 'numeric',
           })
 
           return (
-            <div
-              key={project.id}
-              className="rounded-2xl p-5"
-              style={{
-                backgroundColor: '#0f2236',
-                border: '1px solid rgba(255,255,255,0.04)',
-              }}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className="text-white font-semibold text-sm">{project.name}</div>
-                <div
-                  className="px-2.5 py-1 rounded-full text-xs font-medium"
-                  style={{ backgroundColor: pc.bg, color: pc.color }}
-                >
-                  {project.phase}
+            <Link key={project.id} href={`/projects/${project.id}`} className="block">
+              <div
+                className="rounded-2xl p-5 transition-all hover:brightness-110 cursor-pointer"
+                style={{
+                  backgroundColor: '#0f2236',
+                  border: '1px solid rgba(255,255,255,0.04)',
+                }}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="text-white font-semibold text-sm">{project.name}</div>
+                  <div
+                    className="px-2.5 py-1 rounded-full text-xs font-medium"
+                    style={{ backgroundColor: pc.bg, color: pc.color }}
+                  >
+                    {project.phase}
+                  </div>
+                </div>
+
+                <div className="flex gap-3 mt-4">
+                  {project.hasPackageJson && (
+                    <span className="text-xs px-2 py-0.5 rounded"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)' }}>
+                      npm
+                    </span>
+                  )}
+                  {project.hasAgentsFile && (
+                    <span className="text-xs px-2 py-0.5 rounded"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)' }}>
+                      agents
+                    </span>
+                  )}
+                </div>
+
+                <div className="mt-3 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
+                  Updated {updated}
                 </div>
               </div>
-
-              <div className="flex gap-3 mt-4">
-                {project.hasPackageJson && (
-                  <span className="text-xs px-2 py-0.5 rounded"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)' }}>
-                    npm
-                  </span>
-                )}
-                {project.hasAgentsFile && (
-                  <span className="text-xs px-2 py-0.5 rounded"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)' }}>
-                    agents
-                  </span>
-                )}
-              </div>
-
-              <div className="mt-3 text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
-                Updated {updated}
-              </div>
-            </div>
+            </Link>
           )
         })}
       </div>
     </div>
   )
 }
-
