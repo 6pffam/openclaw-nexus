@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "updatedAt": "2026-05-25T00:00:00.000Z",
+  "members": [
+    {
+      "id": "ceo",
+      "name": "Kone",
+      "role": "CEO",
+      "mission": "Vision, final decisions, and approval authority over everything that matters.",
+      "status": "active",
+      "reportsTo": null,
+      "emoji": "👤",
+      "agentId": null
+    },
+    {
+      "id": "chief-of-staff",
+      "name": "Chief of Staff",
+      "role": "Chief of Staff",
+      "mission": "Routes work, manages agent coordination, and owns the org's internal health.",
+      "status": "active",
+      "reportsTo": "ceo",
+      "emoji": "🎯",
+      "agentId": "main"
+    },
+    {
+      "id": "coder",
+      "name": "Coder",
+      "role": "Coder",
+      "mission": "All software development: architecture, implementation, debugging, code review.",
+      "status": "idle",
+      "reportsTo": "chief-of-staff",
+      "emoji": "💻",
+      "agentId": null
+    },
+    {
+      "id": "qa",
+      "name": "Quality Assurer",
+      "role": "QA",
+      "mission": "QA on everything the Coder ships. Gate before anything goes to production.",
+      "status": "idle",
+      "reportsTo": "chief-of-staff",
+      "emoji": "🔍",
+      "agentId": null
+    },
+    {
+      "id": "project-manager",
+      "name": "Project Manager",
+      "role": "Project Manager",
+      "mission": "Runs any project the CEO initiates — owns timeline, progress, and crew coordination.",
+      "status": "idle",
+      "reportsTo": "chief-of-staff",
+      "emoji": "📋",
+      "agentId": null
+    },
+    {
+      "id": "researcher",
+      "name": "Researcher",
+      "role": "Researcher",
+      "mission": "Proactively researches topics, surfaces curated lists of things worth following.",
+      "status": "idle",
+      "reportsTo": "chief-of-staff",
+      "emoji": "🔬",
+      "agentId": null
+    },
+    {
+      "id": "financial-advisor",
+      "name": "Financial Advisor",
+      "role": "Financial Advisor",
+      "mission": "Works on the CEO's private finances — analysis, tracking, and recommendations.",
+      "status": "idle",
+      "reportsTo": "chief-of-staff",
+      "emoji": "💰",
+      "agentId": null
+    }
+  ]
+}
